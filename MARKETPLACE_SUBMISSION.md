@@ -1,6 +1,6 @@
 ### Repository URL
 
-https://github.com/leoom/omarchygram-bar
+https://github.com/leonaffi-byte/omarchygram-bar
 
 ### Category
 

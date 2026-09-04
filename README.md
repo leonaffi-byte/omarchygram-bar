@@ -1,6 +1,6 @@
 # Omarchygram bar widget
 
-An Omarchy 4 bar widget for [Omarchygram](https://github.com/leoom/omarchygram). It shows unread messages and voice-call state, and focuses or launches Omarchygram when clicked.
+An Omarchy 4 bar widget for [Omarchygram](https://github.com/leonaffi-byte/omarchygram). It shows unread messages and voice-call state, and focuses or launches Omarchygram when clicked.
 
 ## Requirements
 
@@ -10,7 +10,7 @@ An Omarchy 4 bar widget for [Omarchygram](https://github.com/leoom/omarchygram).
 ## Install
 
 ```bash
-omarchy plugin add https://github.com/leoom/omarchygram-bar.git --enable
+omarchy plugin add https://github.com/leonaffi-byte/omarchygram-bar.git --enable
 ```
 
 Choose a placement when prompted. To place it directly after the clock instead:
