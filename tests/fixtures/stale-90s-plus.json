@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "running": true,
+  "heartbeat_secs": 30,
+  "updated_at": "2026-09-04T06:11:02.999Z",
+  "unread": 3,
+  "unread_chats": 2,
+  "unread_with_muted": 7,
+  "unread_chats_with_muted": 4,
+  "call": null
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "running": true,
+  "heartbeat_secs": 30,
+  "updated_at": "2026-09-04T06:12:33Z",
+  "unread": 0,
+  "unread_chats": 0,
+  "unread_with_muted": 0,
+  "unread_chats_with_muted": 0,
+  "call": {
+    "phase": "ringing",
+    "peer": "Marta",
+    "outgoing": false,
+    "muted": false,
+    "connected_at": null
+  }
+}

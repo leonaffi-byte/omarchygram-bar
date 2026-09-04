@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "id": "leoom.omarchygram",
+  "name": "Omarchygram",
+  "version": "0.1.0",
+  "author": "leoom",
+  "license": "MIT",
+  "description": "Unread badge and call state for the Omarchygram Telegram client.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Omarchygram",
+    "description": "Unread badge and call state for the Omarchygram Telegram client.",
+    "category": "Communication",
+    "aliases": [
+      "telegram",
+      "omarchygram",
+      "tg"
+    ],
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "icon": "",
+      "showCount": true,
+      "countMuted": false,
+      "hideWhenIdle": false,
+      "appId": "dev.leoom.Omarchygram",
+      "launchCommand": "omarchygram",
+      "statusPath": ""
+    },
+    "schema": [
+      {
+        "key": "icon",
+        "type": "string",
+        "label": "Bar icon",
+        "description": "Bar glyph; it must exist in the bar font.",
+        "defaultValue": ""
+      },
+      {
+        "key": "showCount",
+        "type": "boolean",
+        "label": "Show unread count",
+        "description": "Show the unread number instead of a dot.",
+        "defaultValue": true
+      },
+      {
+        "key": "countMuted",
+        "type": "boolean",
+        "label": "Count muted chats",
+        "description": "Include unread messages and chats from muted chats.",
+        "defaultValue": false
+      },
+      {
+        "key": "hideWhenIdle",
+        "type": "boolean",
+        "label": "Hide when idle",
+        "description": "Hide while Omarchygram is live with no unread messages or call.",
+        "defaultValue": false
+      },
+      {
+        "key": "appId",
+        "type": "string",
+        "label": "Application ID",
+        "description": "Wayland application ID of the Omarchygram window.",
+        "defaultValue": "dev.leoom.Omarchygram"
+      },
+      {
+        "key": "launchCommand",
+        "type": "string",
+        "label": "Launch command",
+        "description": "Shell command line to run when no Omarchygram window exists.",
+        "defaultValue": "omarchygram"
+      },
+      {
+        "key": "statusPath",
+        "type": "string",
+        "label": "Status file path",
+        "description": "Optional absolute status file path; leave empty to use the standard state directory.",
+        "defaultValue": ""
+      }
+    ]
+  }
+}
