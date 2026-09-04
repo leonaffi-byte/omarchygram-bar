@@ -49,6 +49,17 @@ Plugin authors can check the package with:
 omarchy plugin validate .
 ```
 
+## Removal
+
+```
+omarchy plugin disable leoom.omarchygram   # take it off the bar, keep it installed
+omarchy plugin remove leoom.omarchygram    # uninstall (deletes ~/.config/omarchy/plugins/leoom.omarchygram)
+```
+
+The widget writes nothing of its own: its settings live in the bar layout
+entry of `~/.config/omarchy/shell.json`, which `omarchy plugin remove` cleans
+up, and the status file belongs to the Omarchygram app.
+
 ## License
 
 MIT. See `LICENSE`.
