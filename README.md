@@ -49,6 +49,8 @@ Plugin authors can check the package with:
 omarchy plugin validate .
 ```
 
+See [DEVELOPMENT.md](DEVELOPMENT.md) for tests, QML tooling, and fixture notes.
+
 ## Removal
 
 ```

@@ -8,7 +8,7 @@ Omarchy shell focuses windows through Quickshell's toplevel API instead.
 
 Two deliverables:
 
-- **Part A (app, orchestrator-owned, done):** Omarchygram writes a small status
+- **Part A (app):** Omarchygram writes a small status
   file whenever its unread totals or voice-call state change, plus a heartbeat.
 - **Part B (plugin, separate package `~/Projects/omarchygram-bar`):** an
   Omarchy 4 shell plugin of kind `bar-widget` (Quickshell 0.3.1 / QML) that
@@ -74,7 +74,7 @@ sees a torn document.
   signed-in snapshot.
 - Consumers ignore unknown fields; `version` bumps only on a breaking change.
 
-## 2. Part A — app status hook (orchestrator; done, `src/status.rs`)
+## 2. Part A — app status hook (`src/status.rs`)
 
 - Thread-local writer on the UI thread. Unread totals come from a provider
   the chat list registers (`ChatList::totals_of` over its summaries map);
@@ -101,9 +101,9 @@ sees a torn document.
   temp cleanup, shutdown freeze, Ended/None clearing, name sanitizing.
 - Security pre-scan (opus) done: low risk; its three warnings are fixed above.
 
-## 3. Part B — the plugin (codex; repo `~/Projects/omarchygram-bar`)
+## 3. Part B — the plugin (`omarchygram-bar` repository)
 
-### 3.1 Files (exactly these; no symlinks, no binaries, do not commit)
+### 3.1 Package files
 
 ```
 manifest.json
@@ -112,12 +112,16 @@ Model.js
 tests/run.js
 tests/fixtures/*.json         (one per state in §3.4)
 README.md
+DEVELOPMENT.md
+SPEC.md
+preview.png
 LICENSE                        (MIT)
 MARKETPLACE_SUBMISSION.md      (draft of the Omarchy marketplace issue form)
 .gitignore
 ```
 
-`CLAUDE.md`, `AGENTS.md`, `SPEC.md` already exist — do not modify them.
+The package contains no symlinks or coding-agent instruction files.
+Development notes are ordinary documentation in `DEVELOPMENT.md`.
 
 ### 3.2 manifest.json
 
@@ -278,7 +282,7 @@ table above. Troubleshooting: the app id is in `hyprctl clients -j`
 `XDG_STATE_HOME` between the app and the shell → set `statusPath`;
 `omarchy plugin validate .` for authors. Short and plain; no marketing copy.
 
-### 3.6 Acceptance (machine-checkable — the verifier runs these)
+### 3.6 Validation
 
 1. `omarchy plugin validate ~/Projects/omarchygram-bar` → exit 0.
 2. `node tests/run.js` → exit 0.
@@ -290,28 +294,23 @@ table above. Troubleshooting: the app id is in `hyprctl clients -j`
    = 0; `grep -c "Timer {" BarWidget.qml` = 1; `grep -c "FileView {"` = 3;
    no `#[0-9a-fA-F]{3,8}` color literals in any `.qml`; `find . -type l` empty;
    `grep -c "ToplevelManager" BarWidget.qml` ≥ 1.
-6. `git status --porcelain` lists only the files in §3.1.
-7. Live (orchestrator, mandatory): installed as a git checkout under
+6. The distribution contains the files in §3.1 and no coding-agent instruction files.
+7. Live integration: installed as a git checkout under
    `~/.config/omarchy/plugins/leoom.omarchygram`, enabled;
    `journalctl --user _COMM=quickshell` shows no error or warning mentioning
    `leoom.omarchygram`, `PluginRegistry` or a QML error since enabling; the
    widget reacts within 1 s to a hand-written status fixture (unread → badge,
    active call → phone glyph + elapsed, stale → not running); a bar screenshot
-   goes to the `ui-reviewer`.
+   is available for review.
 
-### 3.7 Worker rules (codex)
+### 3.7 Source references
 
-Run checks directly (no `systemd-run` inside the sandbox). Read-only
-references: `/usr/share/omarchy/shell/Ui/{BarWidget,BarIconButton,BarIndicator}.qml`,
-`/usr/share/omarchy/shell/plugins/bar/widgets/{SystemUpdate,Workspaces,ActiveWindow,KeyboardLayout}.qml`
-and their `.manifest.json`, `/usr/share/omarchy/shell/plugins/bar/Bar.qml`
-(lines 873–948: directory `FileView` watches), `/usr/share/omarchy/shell/plugins/bar/README.md`,
-`/usr/share/omarchy/shell/Commons/{Color,Style}.qml`,
-`/usr/share/omarchy/bin/omarchy-plugin-validate`,
-`~/.config/omarchy/plugins/akitaonrails.ai-usagebar/manifest.json`,
-`~/.config/omarchy/plugins/io.github.sahzudin.omarchy-chat/` (third-party
-layout, README and marketplace form). Do not modify anything outside
-`~/Projects/omarchygram-bar`. Do not commit.
+The installed shell provides reference widget implementations in
+`/usr/share/omarchy/shell/Ui/` and
+`/usr/share/omarchy/shell/plugins/bar/widgets/`. Its `Commons/Color.qml` and
+`Commons/Style.qml` define the theme tokens, and
+`/usr/share/omarchy/bin/omarchy-plugin-validate` implements local package
+validation.
 
 ## 4. Later (not in this spec)
 
